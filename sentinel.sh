@@ -17,15 +17,15 @@ Disk: $DISK_STATUS
 Docker Status:
 $DOCKER_STATUS
 
-LIVING BREATHING STATUS (STATUS.md):
-The file 'STATUS.md' contains the persistent status and history of this server.
+STATUS DOCUMENT (STATUS.md):
+The file 'STATUS.md' contains the persistent history. Use the format from 'STATUS_TEMPLATE.md'.
 
 Instructions:
 1. Conduct system health check on /host.
 2. Run AIDE, rkhunter (scans /host).
 3. Scan images with Trivy.
 4. AUTO-HEAL: If any container is 'Exited' or 'Restarting', investigate logs, fix root cause (e.g. increase memory limits if OOM), and RESTART it.
-5. Update STATUS.md with your actions, findings, and any fixed services. This file is the Living Memory for this server's maintainer."
+5. Update STATUS.md following the structure in STATUS_TEMPLATE.md. Ensure you preserve the 'Historical Log' section, appending new entries as the document grows."
 
 # 4. Execute Maintenance Agent
 gemini -p "$PROMPT" --yolo
