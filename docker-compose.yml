@@ -5,8 +5,9 @@ services:
     env_file:
       - .env
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # Removed :ro to allow 'fixing' (restarting containers)
-      - /:/host:ro # Kept :ro for safety; AI scans the host but cannot delete host files
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/host:ro
       - ./logs:/var/log/sentinel
+      - ./STATUS.md:/app/STATUS.md # Mount the status file for writing
     command: /usr/local/bin/sentinel
     restart: "no"

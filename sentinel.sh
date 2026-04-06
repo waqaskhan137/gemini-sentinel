@@ -12,17 +12,20 @@ DISK_STATUS=$(df -h /host | tail -n 1)
 DOCKER_STATUS=$(docker ps -a --format 'table {{.Names}}\t{{.Status}}')
 
 # 3. Formulate Autonomous Prompt
-PROMPT="System Context (Host mounted at /host):
+PROMPT="Server Maintenance:
 Disk: $DISK_STATUS
 Docker Status:
 $DOCKER_STATUS
+
+LIVING BREATHING STATUS (STATUS.md):
+The file 'STATUS.md' contains the persistent status and history of this server.
 
 Instructions:
 1. Conduct system health check on /host.
 2. Run AIDE, rkhunter (scans /host).
 3. Scan images with Trivy.
 4. AUTO-HEAL: If any container is 'Exited' or 'Restarting', investigate logs, fix root cause (e.g. increase memory limits if OOM), and RESTART it.
-5. Record logs and update maintenance records."
+5. Update STATUS.md with your actions, findings, and any fixed services. This file is the Living Memory for this server's maintainer."
 
 # 4. Execute Maintenance Agent
 gemini -p "$PROMPT" --yolo
