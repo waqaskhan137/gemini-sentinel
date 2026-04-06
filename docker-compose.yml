@@ -1,0 +1,12 @@
+services:
+  gemini-sentinel:
+    build: .
+    container_name: gemini-sentinel
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/host:ro
+      - ./logs:/var/log/sentinel
+    command: /usr/local/bin/sentinel
+    restart: "no" # Trigger via cron
